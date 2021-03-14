@@ -1,0 +1,9 @@
+version: "3.5"
+services:
+  backend_gateway:
+    build: .
+    volumes:
+      - ./src:/app/src
+      - ./package.json:/app/package.json
+    ports:
+      - 5000:5000
