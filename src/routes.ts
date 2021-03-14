@@ -7,12 +7,12 @@ const routers = Router();
 const usersProxy = new UsersProxy(paths.configUsers());
 const complaintProxy = new ComplaintProxy(paths.configComplaint());
 
-routers.get("/ping-user", async (req: Request, resp: Response) => {
+routers.get("/api/users/ping", async (req: Request, resp: Response) => {
     const response = await usersProxy.pingUser();
     resp.status(200).json(response);
 });
 
-routers.get("/ping-complaint", async (req: Request, resp: Response) => {
+routers.get("/api/complaints/ping", async (req: Request, resp: Response) => {
     const response = await complaintProxy.pingComplaint();
     resp.status(200).json(response);
 })
