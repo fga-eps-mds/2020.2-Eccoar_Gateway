@@ -34,4 +34,14 @@ export class ComplaintProxy {
             });
         });
     }
+
+    createComplaint(req:Request): Promise<Response>{
+        return new Promise(resolve => {
+            axios.post(this.path + '/complaint', req.body).then(response => {
+                resolve(response.data);
+            }).catch((error) => {
+                resolve(response.json({"error": error}));
+            });
+        });
+    }
 }

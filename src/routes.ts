@@ -29,5 +29,10 @@ routers.get("/api/complaints", async (req: Request, resp: Response) => {
         })
     }
 })
+routers.post("/api/complaint", async (req:Request, resp:Response) => {
+    console.log(req.body);
+    const response = await complaintProxy.createComplaint(req);
+    resp.status(201).json(response);
+});
 
 export default routers;
