@@ -18,4 +18,19 @@ export class ComplaintProxy {
             });
         });
     }
+
+    listComplaints(skip: string, take: string): Promise<Response> {
+        return new Promise(resolve => {
+            axios.get(this.path + '/complaints', {
+                params: {
+                    skip: skip,
+                    take: take
+                  }
+            }).then(response => {
+                resolve(response.data);
+            }).catch(() => {
+                resolve(response.json({"error": "error"}));
+            });
+        });
+    }
 }
