@@ -17,4 +17,9 @@ routers.get("/api/complaints/ping", async (req: Request, resp: Response) => {
     resp.status(200).json(response);
 })
 
+routers.get("/api/complaints", async (req: Request, resp: Response) => {
+    const response = await complaintProxy.listComplaints(req.query.skip as string, req.query.take as string);
+    resp.status(200).json(response);
+})
+
 export default routers;
