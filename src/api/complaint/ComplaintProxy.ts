@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { response, Response } from 'express';
+import { response, Response, Request } from 'express';
 
 
 export class ComplaintProxy {
@@ -35,8 +35,12 @@ export class ComplaintProxy {
         });
     }
 
-    async createComplaint(req:Request): Promise<Response>{
-        const res = await axios.post(this.path + '/complaint/create', req.body);
-        return res.data;
+    async createComplaint(req:Request, resp: Response): Promise<Response>{
+        try {
+            const res = await axios.post(this.path + '/complaint/create', req.body);
+            return resp.sendStatus(res.status);
+        } catch(err) {
+            return resp.status(err.response.status).json(e.response.data);
+        }
     }
 }
