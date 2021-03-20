@@ -19,12 +19,13 @@ export class ComplaintProxy {
         });
     }
 
-    listComplaints(skip: string, take: string): Promise<Response> {
+    listComplaints(skip: string, take: string, orderDate: string): Promise<Response> {
         return new Promise(resolve => {
             axios.get(this.path + '/complaints', {
                 params: {
                     skip: skip,
-                    take: take
+                    take: take,
+                    orderDate: orderDate
                 }
             }).then(response => {
                 resolve(response.data);
