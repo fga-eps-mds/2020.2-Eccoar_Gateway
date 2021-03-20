@@ -36,7 +36,7 @@ export class ComplaintProxy {
     }
 
     async createComplaint(req:Request): Promise<Response>{
-        const res = await axios.post(this.path + '/complaint', req.body);
+        const res = await axios.post(this.path + '/complaint/create', req.body);
         return res.data;
     }
 }
