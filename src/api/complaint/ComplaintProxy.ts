@@ -14,7 +14,7 @@ export class ComplaintProxy {
             axios.get(this.path + '/ping', {}).then(response => {
                 resolve(response.data);
             }).catch(() => {
-                resolve(response.json({"error": "error"}));
+                resolve(response.json({ "error": "error" }));
             });
         });
     }
@@ -25,11 +25,11 @@ export class ComplaintProxy {
                 params: {
                     skip: skip,
                     take: take
-                  }
+                }
             }).then(response => {
                 resolve(response.data);
             }).catch(() => {
-                resolve(response.json({"error": "error"}));
+                resolve(response.json({ "error": "error" }));
             });
         });
     }
