@@ -40,7 +40,7 @@ export class ComplaintProxy {
             const res = await axios.post(this.path + '/complaint/create', req.body);
             return resp.sendStatus(res.status);
         } catch(err) {
-            return resp.status(err.response.status).json(e.response.data);
+            return resp.status(err.response.status).json(err.response.data);
         }
     }
 }
