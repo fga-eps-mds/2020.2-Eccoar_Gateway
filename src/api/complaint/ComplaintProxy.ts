@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { response, Response, Request, json } from 'express';
+import { response, Response, Request } from 'express';
 
 
 export class ComplaintProxy {
@@ -54,7 +54,7 @@ export class ComplaintProxy {
     }
 
     async listVote(req:Request, resp: Response): Promise<Response> {
-        return new Promise(resolve => {
+        return new Promise(() => {
             axios.get(this.path + '/vote/list', {
                 params: {
                     userId: Number(req.query.userId),
