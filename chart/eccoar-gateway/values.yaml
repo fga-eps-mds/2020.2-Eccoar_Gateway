@@ -44,7 +44,7 @@ app:
   app_port: 5000
 
 ingress:
-  enabled: false
+  enabled: true
   annotations:
     kubernetes.io/ingress.global-static-ip-name: "web-static-ip"
     # kubernetes.io/ingress.class: nginx
