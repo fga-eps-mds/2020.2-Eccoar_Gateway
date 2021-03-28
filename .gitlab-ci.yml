@@ -139,7 +139,7 @@ build prod:
 helm hm:
   variables:
     CHART_NAME: eccoar-gateway
-    AMBIENTE: homolog
+    AMBIENTE: devel
     APP_VERSION: $CI_COMMIT_SHORT_SHA
     CHART_VERSION: 1.0.0-hm.$CI_COMMIT_REF_SLUG.$CI_COMMIT_SHORT_SHA
   only:
@@ -174,7 +174,7 @@ deploy hm:
   variables:
     DOCKER_TAG: homolog
     WORKLOAD_NAME: eccoar-gateway
-    AMBIENTE: homolog
+    AMBIENTE: devel
     CHART_NAME: eccoar-gateway
     CHART_VERSION: 1.0.0-hm.$CI_COMMIT_REF_SLUG.$CI_COMMIT_SHORT_SHA
   only:
