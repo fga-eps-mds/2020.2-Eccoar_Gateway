@@ -57,8 +57,8 @@ sonar_scanner:
     - sonar-scanner -Dproject.settings=$CI_PROJECT_DIR/sonar-project.properties -Dsonar.login=$SONAR_TOKEN
   extends:
     - .only_branches
-  dependencies:
-    - unit_test
+  # dependencies:
+  #   - unit_test
 
 ########### Build ###########
 
