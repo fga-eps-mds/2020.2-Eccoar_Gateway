@@ -52,7 +52,7 @@ ingress:
   hosts:
     - host: hm.eccoar.online
       paths:
-        - /api
+        - path: /api
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
