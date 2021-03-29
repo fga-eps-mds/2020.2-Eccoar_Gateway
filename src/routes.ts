@@ -26,7 +26,7 @@ routers.get("/api/complaints", async (req: Request, resp: Response) => {
         resp.json({
             status: 'erro',
             error
-        })
+        });
     }
 })
 
