@@ -43,4 +43,29 @@ export class ComplaintProxy {
             return resp.status(err.response.status).json(err.response.data);
         }
     }
+
+    async addVote(req:Request, resp: Response): Promise<Response>{
+        try {
+            const res = await axios.post(this.path + '/vote/add', req.body);
+            return resp.sendStatus(res.status);
+        } catch(err) {
+            return resp.status(err.response.status).json(err.response.data);
+        }
+    }
+
+    async listVote(req:Request, resp: Response): Promise<Response> {
+        return new Promise(() => {
+            axios.get(this.path + '/vote/list', {
+                params: {
+                    userId: Number(req.query.userId),
+                    skip: Number(req.query.skip),
+                    take: Number(req.query.take)
+                }
+            }).then(response => {
+               return resp.status(response.status).json(response.data);
+            }).catch((err) => {
+               return resp.status(err.response.status).json(err.response.data);
+            });
+        });
+    }
 }
