@@ -11,10 +11,8 @@ metadata:
   name: {{ $fullName }}
   labels:
     {{- include "eccoar-gateway.labels" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
-  annotations:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
+  #annotations:
+    #kubernetes.io/ingress.global-static-ip-name: {{ .Values.ingress.static_ip }}
 spec:
   {{- if .Values.ingress.tls }}
   tls:
