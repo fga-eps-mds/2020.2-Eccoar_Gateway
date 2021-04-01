@@ -2,10 +2,12 @@ import { Router, Request, Response } from 'express';
 import { paths } from './config/enviroments';
 import { UsersProxy } from './api/users/UsersProxy';
 import { ComplaintProxy } from './api/complaint/ComplaintProxy';
+import { ReportProxy } from './api/report/ReportProxy';
 
 const routers = Router();
 const usersProxy = new UsersProxy(paths.configUsers());
 const complaintProxy = new ComplaintProxy(paths.configComplaint());
+const reportProxy = new ReportProxy(paths.configReport());
 
 routers.get("/api/users/ping", async (req: Request, resp: Response) => {
     const response = await usersProxy.pingUser();
@@ -26,7 +28,7 @@ routers.get("/api/complaints", async (req: Request, resp: Response) => {
         resp.json({
             status: 'erro',
             error
-        })
+        });
     }
 })
 
@@ -41,5 +43,9 @@ routers.post("/api/vote/add", async (req:Request, resp:Response) => {
 routers.get("/api/vote/list", async (req:Request, resp: Response) => {
     return await complaintProxy.listVote(req, resp);
 })
+
+routers.post("/api/report/create", async (req: Request, resp: Response) => {
+    return await reportProxy.createReport(req, resp);
+});
 
 export default routers;
