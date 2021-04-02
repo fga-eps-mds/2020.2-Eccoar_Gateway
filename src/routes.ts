@@ -32,20 +32,24 @@ routers.get("/api/complaints", async (req: Request, resp: Response) => {
     }
 })
 
-routers.post("/api/complaint/create", async (req:Request, resp:Response) => {
+routers.post("/api/complaint/create", async (req: Request, resp: Response) => {
     return await complaintProxy.createComplaint(req, resp);
 });
 
-routers.post("/api/vote/add", async (req:Request, resp:Response) => {
+routers.post("/api/vote/add", async (req: Request, resp: Response) => {
     return await complaintProxy.addVote(req, resp);
 });
 
-routers.get("/api/vote/list", async (req:Request, resp: Response) => {
+routers.get("/api/vote/list", async (req: Request, resp: Response) => {
     return await complaintProxy.listVote(req, resp);
 })
 
 routers.post("/api/report/create", async (req: Request, resp: Response) => {
     return await reportProxy.createReport(req, resp);
 });
+
+routers.get("/api/complaint/withVote", async (req: Request, resp: Response) => {
+    return await complaintProxy.getComplaintWithVote(req, resp);
+})
 
 export default routers;
