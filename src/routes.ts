@@ -42,4 +42,8 @@ routers.get("/api/vote/list", async (req:Request, resp: Response) => {
     return await complaintProxy.listVote(req, resp);
 })
 
+routers.get("/api/complaint/withVote", async (req:Request, resp: Response) => {
+    return await complaintProxy.getComplaintWithVote(req, resp);
+})
+
 export default routers;
