@@ -43,6 +43,18 @@ routers.post('/api/reports', async (req: Request, resp: Response) => {
 
 routers.get('/api/complaints/votes', async (req: Request, resp: Response) => {
 	return await complaintProxy.getComplaintWithVote(req, resp);
+};
+
+routers.post("/api/report/create", async (req: Request, resp: Response) => {
+    const reportRequest = {} as Request;
+
+    const complaintResponse = await complaintProxy.getWaitComplaints(req);
+    console.log(complaintResponse);
+    reportRequest.body = {
+        complaints: complaintResponse,
+        category: req.body.category
+    };
+    return await reportProxy.createReport(reportRequest, resp);
 });
 
 export default routers;
