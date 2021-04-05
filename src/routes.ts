@@ -48,7 +48,7 @@ routers.post("/api/report/create", async (req: Request, resp: Response) => {
     return await reportProxy.createReport(req, resp);
 });
 
-routers.get("/api/complaint/withVote", async (req: Request, resp: Response) => {
+routers.get("/api/complaint/votes", async (req: Request, resp: Response) => {
     return await complaintProxy.getComplaintWithVote(req, resp);
 })
 
