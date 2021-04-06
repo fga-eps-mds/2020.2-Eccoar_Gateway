@@ -9,32 +9,17 @@ const usersProxy = new UsersProxy(paths.configUsers());
 const complaintProxy = new ComplaintProxy(paths.configComplaint());
 const reportProxy = new ReportProxy(paths.configReport());
 
-routers.get('/api/users/ping', async (req: Request, resp: Response) => {
-	const response = await usersProxy.pingUser();
-	resp.status(200).json(response);
+routers.get("/api/users/ping", async (req: Request, resp: Response) => {
+    return await usersProxy.pingUser(req, resp);
 });
 
-routers.get('/api/complaints/ping', async (req: Request, resp: Response) => {
-	const response = await complaintProxy.pingComplaint();
-	resp.status(200).json(response);
-});
+routers.get("/api/complaints/ping", async (req: Request, resp: Response) => {
+    return await complaintProxy.pingComplaint(req, resp);
+})
 
-routers.get('/api/complaints', async (req: Request, resp: Response) => {
-	try {
-		const response = await complaintProxy.listComplaints(
-			req.query.skip as string,
-			req.query.take as string,
-			req.query.orderDate as string,
-		);
-		resp.status(200).json(response);
-	} catch (error) {
-		resp.status(400);
-		resp.json({
-			status: 'erro',
-			error,
-		});
-	}
-});
+routers.get("/api/complaints", async (req: Request, resp: Response) => {
+    return await complaintProxy.listComplaints(req, resp);
+})
 
 routers.post('/api/complaint/create', async (req: Request, resp: Response) => {
 	return await complaintProxy.createComplaint(req, resp);
@@ -48,8 +33,12 @@ routers.get('/api/vote/list', async (req: Request, resp: Response) => {
 	return await complaintProxy.listVote(req, resp);
 });
 
-routers.post('/api/report/create', async (req: Request, resp: Response) => {
-	return await reportProxy.createReport(req, resp);
+routers.get("/api/reports/ping", async (req: Request, resp: Response) => {
+    return await reportProxy.pingReport(req, resp);
+})
+
+routers.post("/api/report/create", async (req: Request, resp: Response) => {
+    return await reportProxy.createReport(req, resp);
 });
 
 routers.get('/api/complaint/votes', async (req: Request, resp: Response) => {

@@ -1,4 +1,4 @@
-import { response, Response } from 'express';
+import { Request, Response } from 'express';
 import axios from 'axios';
 
 export class UsersProxy {
@@ -8,18 +8,12 @@ export class UsersProxy {
 		this.path = path;
 	}
 
-	pingUser(): Promise<Response> {
-		return new Promise((resolve) => {
-			axios
-				.get(this.path + '/ping', {})
-				.then((response) => {
-					resolve(response.data);
-				})
-				.catch(() => {
-					resolve(response.json({ error: 'error' }));
-
-					console.log();
-				});
-		});
-	}
+    async pingUser(req: Request, resp: Response): Promise<Response> {
+        try {
+            const res = await axios.get(this.path + '/ping', {});
+            return resp.status(res.status).json(res.data);
+        } catch (err) {
+            return resp.status(err.response.status).json(err.response.data);
+        }
+    }
 }
