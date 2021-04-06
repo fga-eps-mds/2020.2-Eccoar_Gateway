@@ -1,8 +1,8 @@
 module.exports = {
-  preset: "ts-jest",
-  testEnvironment: "node",
-  testPathIgnorePatterns: ["build"],
-  collectCoverage: true,
-  testResultsProcessor: "jest-sonar-reporter",
-  coveragePathIgnorePatterns: ["/node_modules/", "/test/", "/db/"],
+	preset: 'ts-jest',
+	testEnvironment: 'node',
+	testPathIgnorePatterns: ['build'],
+	collectCoverage: true,
+	testResultsProcessor: 'jest-sonar-reporter',
+	coveragePathIgnorePatterns: ['/node_modules/', '/test/', '/db/'],
 };
