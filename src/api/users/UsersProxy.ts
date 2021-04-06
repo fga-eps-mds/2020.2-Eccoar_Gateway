@@ -17,6 +17,8 @@ export class UsersProxy {
 				})
 				.catch(() => {
 					resolve(response.json({ error: 'error' }));
+
+					console.log();
 				});
 		});
 	}
