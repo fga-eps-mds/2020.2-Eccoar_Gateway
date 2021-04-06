@@ -37,7 +37,7 @@ export class ComplaintProxy {
 
     async getComplaintWithVote(req: Request, resp: Response): Promise<Response> {
         try {
-            const res = await axios.get(this.path + '/complaint/withVote', {
+            const res = await axios.get(this.path + '/complaint/votes', {
                 params: {
                     userId: Number(req.query.userId),
                     complaintId: Number(req.query.complaintId),
