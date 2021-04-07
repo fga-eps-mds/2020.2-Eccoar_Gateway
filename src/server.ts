@@ -1,7 +1,6 @@
 import * as express from 'express';
 import * as cors from 'cors';
 import * as morgan from 'morgan';
-
 import routes from './routes';
 
 const app = express();
@@ -14,3 +13,5 @@ app.use(routes);
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
 });
+
+export default app;
