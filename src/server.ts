@@ -12,5 +12,5 @@ app.use(morgan('combined'));
 app.use(cors());
 app.use(routes);
 app.listen(PORT, () => {
-	console.log(`Listening on port ${PORT}`);
+    console.log(`Listening on port ${PORT}`);
 });

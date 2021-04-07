@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { response, Response, Request } from 'express';
+import { Response, Request } from 'express';
 
 export class ReportProxy {
 	path: string;
