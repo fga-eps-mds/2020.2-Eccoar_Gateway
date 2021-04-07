@@ -45,10 +45,8 @@ app:
 
 ingress:
   enabled: true
-  static_ip:  "web-static-ip"
   annotations:
-    # kubernetes.io/ingress.global-static-ip-name:
-    # kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
     - host: hm.eccoar.online
