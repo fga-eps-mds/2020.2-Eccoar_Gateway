@@ -8,4 +8,9 @@ export const paths = {
         const COMPLAINT_PATH = `http://${process.env.COMPLAINTS_HOST}:${process.env.COMPLAINTS_PORT}/api`;
         return COMPLAINT_PATH;
     },
+
+    configReport: (): string => {
+        const REPORT_PATH = `http://${process.env.REPORTS_HOST}:${process.env.REPORTS_PORT}/api`;
+        return REPORT_PATH;
+    }
 };
