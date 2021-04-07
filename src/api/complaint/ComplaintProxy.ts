@@ -37,13 +37,13 @@ export class ComplaintProxy {
 
     async getComplaintWithVote(req: Request, resp: Response): Promise<Response> {
         try {
-            const res = await axios.get(this.path + '/complaint/withVote', {
+            const res = await axios.get(this.path + '/complaint/votes', {
                 params: {
                     userId: Number(req.query.userId),
                     complaintId: Number(req.query.complaintId),
                 }
             });
-            return resp.status(res.status).json(res.data);;
+            return resp.status(res.status).json(res.data);
         } catch (err) {
             return resp.status(err.response.status).json(err.response.data);
         }
@@ -52,7 +52,7 @@ export class ComplaintProxy {
     async createComplaint(req: Request, resp: Response): Promise<Response> {
         try {
             const res = await axios.post(this.path + '/complaint/create', req.body);
-            return resp.sendStatus(res.status);
+            return resp.status(res.status).json({ ...res.data });
         } catch (err) {
             return resp.status(err.response.status).json(err.response.data);
         }
