@@ -15,11 +15,11 @@ routers.get("/api/users/ping", async (req: Request, resp: Response) => {
 
 routers.get("/api/complaints/ping", async (req: Request, resp: Response) => {
     return await complaintProxy.pingComplaint(req, resp);
-})
+});
 
 routers.get("/api/complaints", async (req: Request, resp: Response) => {
     return await complaintProxy.listComplaints(req, resp);
-})
+});
 
 routers.post('/api/complaint/create', async (req: Request, resp: Response) => {
 	return await complaintProxy.createComplaint(req, resp);
@@ -29,20 +29,20 @@ routers.post('/api/vote/add', async (req: Request, resp: Response) => {
 	return await complaintProxy.addVote(req, resp);
 });
 
-routers.get('/api/vote/list', async (req: Request, resp: Response) => {
-	return await complaintProxy.listVote(req, resp);
+routers.get("/api/vote/list", async (req: Request, resp: Response) => {
+    return await complaintProxy.listVote(req, resp);
 });
 
 routers.get("/api/reports/ping", async (req: Request, resp: Response) => {
     return await reportProxy.pingReport(req, resp);
-})
+});
 
 routers.post("/api/report/create", async (req: Request, resp: Response) => {
     return await reportProxy.createReport(req, resp);
 });
 
-routers.get('/api/complaint/votes', async (req: Request, resp: Response) => {
-	return await complaintProxy.getComplaintWithVote(req, resp);
+routers.get("/api/complaint/votes", async (req: Request, resp: Response) => {
+    return await complaintProxy.getComplaintWithVote(req, resp);
 });
 
 export default routers;

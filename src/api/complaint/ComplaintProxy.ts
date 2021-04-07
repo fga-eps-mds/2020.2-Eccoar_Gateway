@@ -78,7 +78,7 @@ export class ComplaintProxy {
                     skip: Number(req.query.skip),
                     take: Number(req.query.take)
                 }
-            })
+            });
             return resp.status(res.status).json(res.data);
         } catch (err) {
             return resp.status(err.response.status).json(err.response.data);
