@@ -62,16 +62,21 @@ routers.get('/api/complaints/votes', async (req: Request, resp: Response) => {
 };
 
 routers.post("/api/mailer/send", async (req: Request, resp: Response) => {
-    const reportRequest = {} as Request;
-    const complaintResponse = complaintProxy.getWaitComplaints(req);
-    reportRequest.body = {
-        complaints: complaintResponse,
-        category: String(req.query.category)
-    };
-    const reportResponse = await reportProxy.createReport(reportRequest);
-    const mailerRequest = {} as Request;
-    mailerRequest.body = reportResponse;
-    return await mailerProxy.sendMail(mailerRequest, resp);
+    try {
+        const reportRequest = {} as Request;
+        const complaintResponse = await complaintProxy.getWaitComplaints(req);
+        reportRequest.body = {
+            complaints: complaintResponse,
+            category: String(req.query.category)
+        };
+        const reportResponse = await reportProxy.createReport(reportRequest);
+        const mailerRequest = {} as Request;
+        mailerRequest.body = reportResponse;
+        return await mailerProxy.sendMail(mailerRequest, resp);
+    } catch (error) {
+        return resp.status(400).json({ "error": error });
+    }
+    
 
 });
 
