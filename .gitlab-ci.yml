@@ -170,13 +170,16 @@ helm prod:
   script:
     - echo $AMBIENTE
     - kubectl get services -n $AMBIENTE
-    - helm upgrade $WORKLOAD_NAME $CHART_PATH --install --namespace $AMBIENTE --set image.tag=$DOCKER_TAG
+    - helm upgrade $WORKLOAD_NAME $CHART_PATH --install --namespace $AMBIENTE --set image.tag=$DOCKER_TAG --set hosts[0].host=$INGRESS_HOST --set cert-manager.io/cluster-issuer=$CERT_ISSUER --set tls[0].secretName=$CERT_SECRET --set tls[0].hosts[0]=$INGRESS_HOST
 
 deploy hm:
   variables:
     DOCKER_TAG: homolog
     WORKLOAD_NAME: eccoar-gateway
     AMBIENTE: homolog
+    INGRESS_HOST: hm.eccoar.online
+    CERT_ISSUER: letsencrypt-hm
+    CERT_SECRET: eccoar-hm-cert
     CHART_NAME: eccoar-gateway
     CHART_VERSION: 1.0.0-hm.$CI_COMMIT_REF_SLUG.$CI_COMMIT_SHORT_SHA
   only:
@@ -190,6 +193,9 @@ deploy prod:
     DOCKER_TAG: $CI_COMMIT_TAG
     WORKLOAD_NAME: eccoar-gateway
     AMBIENTE: prod
+    INGRESS_HOST: eccoar.online
+    CERT_ISSUER: letsencrypt-prod
+    CERT_SECRET: eccoar-prod-cert
     APP_VERSION: $CI_COMMIT_TAG
     CHART_VERSION: $CI_COMMIT_TAG
   only:
