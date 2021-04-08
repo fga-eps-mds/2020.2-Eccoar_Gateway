@@ -10,8 +10,8 @@ app.use(express.json());
 app.use(morgan('combined'));
 app.use(cors());
 app.use(routes);
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
 });
 
-export default app;
+export default server;

@@ -1,18 +1,40 @@
-import app from '../src/server'; // Link to your server file
-import * as request from 'supertest';
+import * as supertest from 'supertest';
 
-app.get('/test', async (req, res) => {
-    res.json({message: 'pass!'});
+describe("test get ping endpoint", () => {
+  let server;
+  const pingMock = {ping: 'pong'};
+
+  beforeAll(async () => {
+    const mod = await import('../src/server');
+    server = (mod as any).default;
   });
 
-describe("test endpoint", () => {
+  afterAll((done) => {
+    server.close(done);
+  });
 
-    it('gets the test endpoint', async done => {
-        const response = await request(app).get('/test');
-      
-        expect(response.status).toBe(200);
-        expect(response.body.message).toBe('pass!');
-        done();
-      });
+  it('Get pong from ping, in complaints', async (done) => {
+    supertest(server)
+      .get('/api/complaints/ping')
+      .expect('Content-Type', /json/)
+      .expect(200, pingMock);
+    done();
+  });
+
+  it('Get pong from ping, in users', async (done) => {
+    supertest(server)
+      .get('/api/users/ping')
+      .expect('Content-Type', /json/)
+      .expect(200, pingMock);
+    done();
+  });
+
+  it('Get pong from ping, in reports', async (done) => {
+    supertest(server)
+      .get('/api/reports/ping')
+      .expect('Content-Type', /json/)
+      .expect(200, pingMock);
+    done();
+  });
 
 });
