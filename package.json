@@ -7,7 +7,8 @@
     "start": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts",
     "build": "node ./build/server.js --env=production",
     "lint": "eslint . --ext .ts",
-    "test": "jest"
+    "lint-report": "eslint . --ext .ts --output-file ./lint-report.html --format html",
+    "test": "jest --outputFile=./test-report.json --json"
   },
   "repository": {
     "type": "git",
