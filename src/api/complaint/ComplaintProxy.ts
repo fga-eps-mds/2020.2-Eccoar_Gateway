@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Response, Request } from 'express';
+import { Response, Request, NextFunction } from 'express';
 
 export class ComplaintProxy {
 	path: string;
@@ -8,16 +8,16 @@ export class ComplaintProxy {
 		this.path = path;
 	}
 
-    async pingComplaint(req: Request, resp: Response): Promise<Response> {
+    async pingComplaint(req: Request, resp: Response, next: NextFunction): Promise<Response> {
         try {
             const res = await axios.get(this.path + '/ping', {});
             return resp.status(res.status).json(res.data);
         } catch (err) {
-            return resp.status(400).json({ "error": err.message });
+            next();
         }
     }
 
-    async listComplaints(req: Request, resp: Response): Promise<Response> {
+    async listComplaints(req: Request, resp: Response, next: NextFunction): Promise<Response> {
         try{
             const res = await axios.get(this.path + '/complaints', {
                 params: {
@@ -28,11 +28,11 @@ export class ComplaintProxy {
             });
             return resp.status(res.status).json(res.data);
         } catch (err) {
-          return resp.status(400).json({ "error": err.message });
+          next();
         }
     }
 
-    async getComplaintWithVote(req: Request, resp: Response): Promise<Response> {
+    async getComplaintWithVote(req: Request, resp: Response, next: NextFunction): Promise<Response> {
         try {
             const res = await axios.get(this.path + '/complaint/votes', {
                 params: {
@@ -42,29 +42,29 @@ export class ComplaintProxy {
             });
             return resp.status(res.status).json(res.data);
         } catch (err) {
-          return resp.status(400).json({ "error": err.message });
+          next();
         }
     }
 
-    async createComplaint(req: Request, resp: Response): Promise<Response> {
+    async createComplaint(req: Request, resp: Response, next: NextFunction): Promise<Response> {
         try {
             const res = await axios.post(this.path + '/complaint/create', req.body);
             return resp.status(res.status).json({ ...res.data });
         } catch (err) {
-          return resp.status(400).json({ "error": err.message });
+          next();
         }
     }
 
-    async addVote(req: Request, resp: Response): Promise<Response> {
+    async addVote(req: Request, resp: Response, next: NextFunction): Promise<Response> {
         try {
             const res = await axios.post(this.path + '/vote/add', req.body);
             return resp.sendStatus(res.status);
         } catch (err) {
-          return resp.status(400).json({ "error": err.message });
+          next();
         }
     }
 
-    async listVote(req: Request, resp: Response): Promise<Response> {
+    async listVote(req: Request, resp: Response, next: NextFunction): Promise<Response> {
         try {
             const res = await axios.get(this.path + '/vote/list', {
                 params: {
@@ -75,7 +75,7 @@ export class ComplaintProxy {
             });
             return resp.status(res.status).json(res.data);
         } catch (err) {
-          return resp.status(400).json({ "error": err.message });
+          next();
         }
     }
 }
