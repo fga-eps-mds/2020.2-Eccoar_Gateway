@@ -49,7 +49,7 @@ export class ComplaintProxy {
     async createComplaint(req: Request, resp: Response): Promise<Response> {
         try {
             const res = await axios.post(this.path + '/complaint/create', req.body);
-            return resp.status(res.status).json({ ...res.data });
+            return resp.status(res.status).json(res.data);
         } catch (err) {
             return resp.status(err.response.status).json(err.response.data);
         }
