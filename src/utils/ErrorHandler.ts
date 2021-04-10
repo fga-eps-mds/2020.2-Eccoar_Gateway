@@ -1,14 +1,13 @@
 import { NextFunction, Request, Response } from "express";
 
 export class GeneralError {
-
     message: string;
 
     constructor(message: string) {
         this.message = message;
     }
 
-    getCode(): number {
+    getCode() {
         if(this instanceof BadRequest) {
             return 400;
         }
@@ -18,12 +17,11 @@ export class GeneralError {
     }
 }
 
-export class BadRequest extends GeneralError{}
-export class NotFound extends GeneralError{}
+export class BadRequest extends GeneralError {}
+export class NotFound extends GeneralError {}
 
-const handleErrors = (err: Error | GeneralError, _req: Request, resp: Response, _next: NextFunction): Response => {
-
-    if(err instanceof BadRequest) {
+const handleErrors = (err: Error | GeneralError, _req: Request, resp: Response, _next: NextFunction) => {
+    if(err instanceof GeneralError) {
         return resp.status(err.getCode()).json({
             status: 'error',
             message: err.message
