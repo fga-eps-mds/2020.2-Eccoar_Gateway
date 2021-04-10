@@ -43,25 +43,25 @@ describe("test complaints route", () => {
 
   it('Test create complaints API', async () => {
     jest.spyOn(axios, 'post').mockImplementationOnce(() => Promise.resolve(mockStatus));
-    const result = await request(app).post('/api/complaint/create').send({});
+    const result = await request(app).post('/api/complaints').send({});
     expect(result.status).toEqual(200);
   });
 
   it('Test adds vote API', async () => {
     jest.spyOn(axios, 'post').mockImplementationOnce(() => Promise.resolve(mockStatus));
-    const result = await request(app).post('/api/vote/add').send({});
+    const result = await request(app).post('/api/votes').send({});
     expect(result.status).toEqual(200);
   });
 
   it('Test lists votes API', async () => {
     jest.spyOn(axios, 'get').mockImplementationOnce(() => Promise.resolve(mockStatus));
-    const result = await request(app).get('/api/vote/list').send({});
+    const result = await request(app).get('/api/votes').send({});
     expect(result.status).toEqual(200);
   });
 
   it('Test gets complaints with votes API', async () => {
     jest.spyOn(axios, 'get').mockImplementationOnce(() => Promise.resolve(mockStatus));
-    const result = await request(app).get('/api/complaint/votes').send({});
+    const result = await request(app).get('/api/complaints/votes').send({});
     expect(result.status).toEqual(200);
   });
 });
@@ -73,7 +73,7 @@ describe("test reports route", () => {
 
   it('Test create reports API', async () => {
     jest.spyOn(axios, 'post').mockImplementationOnce(() => Promise.resolve(mockStatus));
-    const result = await request(app).post('/api/report/create').send({});
+    const result = await request(app).post('/api/reports').send({});
     expect(result.status).toEqual(200);
   });
 
