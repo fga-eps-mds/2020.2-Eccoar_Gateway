@@ -17,12 +17,15 @@ export class ReportProxy {
 		}
 	}
 
-    async createReport(req: Request): Promise<Response> {
-        try {
-            const res = await axios.post(this.path + '/report/create', req.body);
-            return res.data;
-        } catch (err) {
-            return err;
-        }
-    }
+	async createReport(req: Request): Promise<Response> {
+		try {
+			const res = await axios.post(
+				this.path + '/report/create',
+				req.body,
+			);
+			return res.data;
+		} catch (err) {
+			return err;
+		}
+	}
 }

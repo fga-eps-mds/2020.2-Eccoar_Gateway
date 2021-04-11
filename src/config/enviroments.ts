@@ -8,13 +8,13 @@ export const paths = {
 		const COMPLAINT_PATH = `http://${process.env.COMPLAINTS_HOST}:${process.env.COMPLAINTS_PORT}/api`;
 		return COMPLAINT_PATH;
 	},
-    configReport: (): string => {
-        const REPORT_PATH = `http://${process.env.REPORTS_HOST}:${process.env.REPORTS_PORT}/api`;
-        return REPORT_PATH;
-    },
+	configReport: (): string => {
+		const REPORT_PATH = `http://${process.env.REPORTS_HOST}:${process.env.REPORTS_PORT}/api`;
+		return REPORT_PATH;
+	},
 
-    configMailer: (): string => {
-        const MAILER_PATH = `http://${process.env.MAILER_HOST}:${process.env.MAILER_PORT}/api`;
-        return MAILER_PATH;
-    }
+	configMailer: (): string => {
+		const MAILER_PATH = `http://${process.env.MAILER_HOST}:${process.env.MAILER_PORT}/api`;
+		return MAILER_PATH;
+	},
 };
