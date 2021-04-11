@@ -71,17 +71,36 @@ export class ComplaintProxy {
 	}
 
 	async listVote(req: Request, resp: Response): Promise<Response> {
+		return new Promise(() => {
+			axios
+				.get(this.path + '/vote/list', {
+					params: {
+						userId: Number(req.query.userId),
+						skip: Number(req.query.skip),
+						take: Number(req.query.take),
+					},
+				})
+				.then((response) => {
+					return resp.status(response.status).json(response.data);
+				})
+				.catch((err) => {
+					return resp
+						.status(err.response.status)
+						.json(err.response.data);
+				});
+		});
+	}
+
+	async getWaitComplaints(req: Request): Promise<Response> {
 		try {
-			const res = await axios.get(this.path + '/vote/list', {
+			const result = await axios.get(this.path + '/complaints/wait', {
 				params: {
-					userId: Number(req.query.userId),
-					skip: Number(req.query.skip),
-					take: Number(req.query.take),
+					category: String(req.query.category),
 				},
 			});
-			return resp.status(res.status).json(res.data);
+			return result.data;
 		} catch (err) {
-			return resp.status(err.response.status).json(err.response.data);
+			return err;
 		}
 	}
 }

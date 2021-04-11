@@ -14,6 +14,8 @@ services:
       COMPLAINTS_PORT: 5000
       REPORTS_HOST: backend_reports
       REPORTS_PORT: 5000
+      MAILER_HOST: backend_mailer
+      MAILER_PORT: 5000
     networks: 
       - gateway
 
