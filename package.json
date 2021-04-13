@@ -8,7 +8,7 @@
 		"build": "node ./build/server.js --env=production",
 		"test": "jest --forceExit",
 		"lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
-		"lint-report": "eslint . --ignore-path .gitignore --ext .js,.ts,.tsx . ./lint-report.html --format html",
+		"lint-report": "eslint . --ignore-path .gitignore --ext .js,.ts,.tsx --output-file ./lint-report.html --format html",
 		"check-types": "tsc",
 		"prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|ts|tsx)\"",
 		"format": "npm run prettier -- --write",
