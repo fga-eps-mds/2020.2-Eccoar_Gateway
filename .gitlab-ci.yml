@@ -2,7 +2,7 @@ stages:
   - code
   - tests
   - quality scan
-  # - quality metrics
+  - quality metrics
   - build
   - build chart
   - deploy
