@@ -60,6 +60,26 @@ spec:
                 configMapKeyRef:
                   name: eccoar-config
                   key: COMPLAINTS_PORT
+            - name: REPORTS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: eccoar-config
+                  key: REPORTS_HOST
+            - name: REPORTS_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: eccoar-config
+                  key: REPORTS_PORT
+            - name: MAILER_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: eccoar-config
+                  key: MAILER_HOST
+            - name: MAILER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: eccoar-config
+                  key: MAILER_PORT
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
