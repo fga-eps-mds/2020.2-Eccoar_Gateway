@@ -25,8 +25,9 @@ export class MailerProxy {
 		try {
 			const res = await axios.post(this.path + '/sendMail', req.body);
 			return resp.sendStatus(res.status);
-		} catch (err) {
-			return resp.status(err.response.status).json(err.response.data);
+		} catch (error) {
+			console.error(error);
+			return resp.status(error.response.status).json(error.response.data);
 		}
 	}
 }
