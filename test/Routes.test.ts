@@ -54,7 +54,7 @@ describe('test complaints route', () => {
 			Promise.resolve(mockStatus),
 		);
 		const result = await request(app)
-			.delete('/api/complaint/delete')
+			.delete('/api/complaints/delete')
 			.send({});
 		expect(result.status).toEqual(200);
 	});
