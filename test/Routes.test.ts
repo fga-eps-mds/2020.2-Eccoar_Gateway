@@ -53,9 +53,7 @@ describe('test complaints route', () => {
 		jest.spyOn(axios, 'delete').mockImplementationOnce(() =>
 			Promise.resolve(mockStatus),
 		);
-		const result = await request(app)
-			.delete('/api/complaints/delete')
-			.send({});
+		const result = await request(app).delete('/api/complaints').send({});
 		expect(result.status).toEqual(200);
 	});
 
