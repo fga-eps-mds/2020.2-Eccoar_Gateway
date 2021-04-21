@@ -65,4 +65,7 @@ routers.post('/api/mailer/send', async (req: Request, resp: Response) => {
 	}
 });
 
+routers.post('/api/users', async (req: Request, resp: Response) => {
+	return usersProxy.createUser(req, resp);
+});
 export default routers;
