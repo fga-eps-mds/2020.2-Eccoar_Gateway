@@ -81,3 +81,17 @@ describe('test complaints route', () => {
 		expect(result.status).toEqual(200);
 	});
 });
+
+describe('Test User route', () => {
+	const mockStatus = {
+		status: 200,
+	};
+
+	it('Test create user route', async () => {
+		jest.spyOn(axios, 'post').mockImplementationOnce(() =>
+			Promise.resolve(mockStatus),
+		);
+		const result = await request(app).post('/api/users').send({});
+		expect(result.status).toEqual(200);
+	});
+});
