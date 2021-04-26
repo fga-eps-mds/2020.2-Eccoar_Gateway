@@ -36,6 +36,11 @@ routers.get('/api/mailer/ping', async (req: Request, resp: Response) => {
 	resp.status(200).json(response);
 });
 
+routers.get('/api/complaints/user', async (req: Request, resp: Response) => {
+	console.log('Salve');
+	return await complaintProxy.getUserComplaint(req, resp);
+});
+
 routers.get('/api/complaints', async (req: Request, resp: Response) => {
 	return await complaintProxy.listComplaints(req, resp);
 });

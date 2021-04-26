@@ -32,6 +32,20 @@ export class ComplaintProxy {
 		}
 	}
 
+	async getUserComplaint(req: Request, resp: Response): Promise<Response> {
+		try {
+			console.log('hello World');
+			const res = await axios.get(this.path + '/complaints/user', {
+				params: {
+					userId: Number(req.query.userId),
+				},
+			});
+			return resp.status(res.status).json(res.data);
+		} catch (err) {
+			return resp.status(err.response.status).json(err.response.data);
+		}
+	}
+
 	async getComplaintWithVote(
 		req: Request,
 		resp: Response,
