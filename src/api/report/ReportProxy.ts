@@ -12,8 +12,9 @@ export class ReportProxy {
 		try {
 			const res = await axios.get(this.path + '/ping', {});
 			return resp.status(res.status).json(res.data);
-		} catch (err) {
-			return resp.status(err.response.status).json(err.response.data);
+		} catch (error) {
+			console.error(error);
+			return resp.status(error.response.status).json(error.response.data);
 		}
 	}
 
@@ -24,8 +25,9 @@ export class ReportProxy {
 				req.body,
 			);
 			return res.data;
-		} catch (err) {
-			return err;
+		} catch (error) {
+			console.error(error);
+			return error;
 		}
 	}
 }
