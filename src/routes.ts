@@ -48,7 +48,7 @@ routers.get('/api/complaints/votes', async (req: Request, resp: Response) => {
 	return await complaintProxy.getComplaintWithVote(req, resp);
 });
 
-routers.delete('/api/votes', async (req: Request, resp: Response) => {
+routers.delete('/api/vote', async (req: Request, resp: Response) => {
 	return await complaintProxy.removeVote(req, resp);
 });
 
