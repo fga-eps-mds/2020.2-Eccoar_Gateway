@@ -12,8 +12,9 @@ export class ComplaintProxy {
 		try {
 			const res = await axios.get(this.path + '/ping', {});
 			return resp.status(res.status).json(res.data);
-		} catch (err) {
-			return resp.status(err.response.status).json(err.response.data);
+		} catch (error) {
+			console.error(error);
+			return resp.status(error.response.status).json(error.response.data);
 		}
 	}
 
@@ -27,8 +28,9 @@ export class ComplaintProxy {
 				},
 			});
 			return resp.status(res.status).json(res.data);
-		} catch (err) {
-			return resp.status(err.response.status).json(err.response.data);
+		} catch (error) {
+			console.error(error);
+			return resp.status(error.response.status).json(error.response.data);
 		}
 	}
 
@@ -44,8 +46,9 @@ export class ComplaintProxy {
 				},
 			});
 			return resp.status(res.status).json(res.data);
-		} catch (err) {
-			return resp.status(err.response.status).json(err.response.data);
+		} catch (error) {
+			console.error(error);
+			return resp.status(error.response.status).json(error.response.data);
 		}
 	}
 
@@ -56,8 +59,9 @@ export class ComplaintProxy {
 				req.body,
 			);
 			return resp.status(res.status).json(res.data);
-		} catch (err) {
-			return resp.status(err.response.status).json(err.response.data);
+		} catch (error) {
+			console.error(error);
+			return resp.status(error.response.status).json(error.response.data);
 		}
 	}
 
@@ -65,8 +69,9 @@ export class ComplaintProxy {
 		try {
 			const res = await axios.post(this.path + '/vote/add', req.body);
 			return resp.sendStatus(res.status);
-		} catch (err) {
-			return resp.status(err.response.status).json(err.response.data);
+		} catch (error) {
+			console.error(error);
+			return resp.status(error.response.status).json(error.response.data);
 		}
 	}
 
@@ -83,10 +88,11 @@ export class ComplaintProxy {
 				.then((response) => {
 					return resp.status(response.status).json(response.data);
 				})
-				.catch((err) => {
+				.catch((error) => {
+					console.error(error);
 					return resp
-						.status(err.response.status)
-						.json(err.response.data);
+						.status(error.response.status)
+						.json(error.response.data);
 				});
 		});
 	}
@@ -99,8 +105,9 @@ export class ComplaintProxy {
 				},
 			});
 			return result.data;
-		} catch (err) {
-			return err;
+		} catch (error) {
+			console.error(error);
+			return error;
 		}
 	}
 }
