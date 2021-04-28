@@ -41,7 +41,7 @@ export class ComplaintProxy {
 		try {
 			const res = await axios.get(this.path + '/complaint/votes', {
 				params: {
-					userId: Number(req.query.userId),
+					userId: req.query.userId,
 					complaintId: Number(req.query.complaintId),
 				},
 			});
@@ -95,7 +95,7 @@ export class ComplaintProxy {
 			axios
 				.get(this.path + '/vote/list', {
 					params: {
-						userId: Number(req.query.userId),
+						userId: req.query.userId,
 						skip: Number(req.query.skip),
 						take: Number(req.query.take),
 					},
@@ -123,6 +123,20 @@ export class ComplaintProxy {
 		} catch (error) {
 			console.error(error);
 			return error;
+		}
+	}
+
+	async deleteComplaint(req: Request, resp: Response): Promise<Response> {
+		try {
+			const res = await axios.delete(this.path + '/complaints', {
+				params: {
+					userId: req.query.userId,
+					id: Number(req.query.id),
+				},
+			});
+			return resp.status(res.status).json({ msg: 'OK' });
+		} catch (err) {
+			return resp.status(err.response.status).json(err.response.data);
 		}
 	}
 }
