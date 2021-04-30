@@ -8,6 +8,8 @@ import { CaptureConsole } from '@sentry/integrations';
 import routes from './routes';
 import { reqHandler, traceHandler, errHandler } from './config/sentry';
 
+import { emailTask } from './cron/cronjob';
+
 const app = express();
 const PORT = process.env.APP_PORT || 5000;
 
@@ -36,6 +38,8 @@ app.use(errHandler);
 
 app.listen(PORT, () => {
 	console.log(`Listening on port ${PORT}`);
+
+	emailTask();
 });
 
 export default app;
