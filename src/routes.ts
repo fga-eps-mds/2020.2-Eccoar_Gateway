@@ -48,6 +48,10 @@ routers.get('/api/complaints/votes', async (req: Request, resp: Response) => {
 	return await complaintProxy.getComplaintWithVote(req, resp);
 });
 
+routers.delete('/api/complaints', async (req: Request, resp: Response) => {
+	return await complaintProxy.deleteComplaint(req, resp);
+});
+
 routers.post('/api/mailer/send', async (req: Request, resp: Response) => {
 	try {
 		const reportRequest = {} as Request;
