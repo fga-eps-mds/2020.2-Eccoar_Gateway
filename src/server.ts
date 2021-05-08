@@ -28,7 +28,7 @@ Sentry.init({
 
 app.use(reqHandler);
 app.use(traceHandler);
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 app.use(morgan('combined'));
 app.use(cors());
 app.use(routes);
