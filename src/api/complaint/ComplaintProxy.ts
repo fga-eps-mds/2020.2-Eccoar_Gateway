@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Response, Request } from 'express';
+import { Response, Request, request } from 'express';
 
 export class ComplaintProxy {
 	path: string;
@@ -41,8 +41,8 @@ export class ComplaintProxy {
 		try {
 			const res = await axios.get(this.path + '/complaint/votes', {
 				params: {
-					userId: Number(req.query.userId),
-					complaintId: Number(req.query.complaintId),
+					userId: req.query.userId,
+					complaintId: req.query.complaintId,
 				},
 			});
 			return resp.status(res.status).json(res.data);
@@ -93,13 +93,29 @@ export class ComplaintProxy {
 	async listVote(req: Request, resp: Response): Promise<Response> {
 		return new Promise(() => {
 			axios
-				.get(this.path + '/vote/list', {
-					params: {
-						userId: Number(req.query.userId),
-						skip: Number(req.query.skip),
-						take: Number(req.query.take),
-					},
-				})
+				.get(
+					this.path + '/vote/list',
+					(req.query.latitude != null ||
+						req.query.latitude != undefined) &&
+						(req.query.longitude != null ||
+							req.query.longitude != undefined)
+						? {
+								params: {
+									userId: req.query.userId,
+									skip: req.query.skip,
+									take: req.query.take,
+									latitude: req.query.latitude,
+									longitude: req.query.longitude,
+								},
+						  }
+						: {
+								params: {
+									userId: req.query.userId,
+									skip: req.query.skip,
+									take: req.query.take,
+								},
+						  },
+				)
 				.then((response) => {
 					return resp.status(response.status).json(response.data);
 				})
