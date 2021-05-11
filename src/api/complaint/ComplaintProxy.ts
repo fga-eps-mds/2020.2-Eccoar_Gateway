@@ -52,6 +52,23 @@ export class ComplaintProxy {
 		}
 	}
 
+	async getUserIdComplaint(
+		req: Request,
+		resp: Response,
+	): Promise<Response> {
+		try {
+			const res = await axios.get(this.path + '/complaints/user', {
+				params: {
+					userId: String(req.query.userId),
+				},
+			});
+			return resp.status(res.status).json(res.data);
+		} catch (error) {
+			console.error(error);
+			return resp.status(error.response.status).json(error.response.data);
+		}
+	}
+
 	async createComplaint(req: Request, resp: Response): Promise<Response> {
 		try {
 			const res = await axios.post(

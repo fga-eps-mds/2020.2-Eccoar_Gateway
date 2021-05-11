@@ -48,6 +48,10 @@ routers.get('/api/complaints/votes', async (req: Request, resp: Response) => {
 	return await complaintProxy.getComplaintWithVote(req, resp);
 });
 
+routers.get('/api/complaints/user', async (req: Request, resp: Response) => {
+	return await complaintProxy.getUserIdComplaint(req, resp);
+});
+
 routers.post('/api/mailer/send', async (req: Request, resp: Response) => {
 	try {
 		const reportRequest = {} as Request;
