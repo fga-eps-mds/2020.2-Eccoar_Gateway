@@ -92,6 +92,7 @@ export class ComplaintProxy {
 
 	async listVote(req: Request, resp: Response): Promise<Response> {
 		return new Promise(() => {
+			const {status, category} = req.query;
 			axios
 				.get(
 					this.path + '/vote/list',
@@ -106,6 +107,8 @@ export class ComplaintProxy {
 									take: req.query.take,
 									latitude: req.query.latitude,
 									longitude: req.query.longitude,
+									status,
+									category
 								},
 						  }
 						: {
@@ -113,6 +116,8 @@ export class ComplaintProxy {
 									userId: req.query.userId,
 									skip: req.query.skip,
 									take: req.query.take,
+									status,
+									category
 								},
 						  },
 				)
